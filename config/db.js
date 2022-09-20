@@ -1,11 +1,16 @@
-// const pgp = require('pg-promise');
+const { Sequelize } = require('sequelize');
 
-// const username  = ;
-// const password  = ;
-// const host      = ;
-// const port      = ;
-// const database  = ;
+const username = 'postgres';
+const password = '00023';
+const host = 'localhost';
+const port = '5432';
+const database = 'timestamp';
 
-// const db = pgp(`postgres://${username}:${password}@${host}:${port}/${database}`);
+const sequelize = new Sequelize(`postgres://${username}:${password}@${host}:${port}/${database}`);
 
-// export default db;
+sequelize.sync().then(result => {
+    console.log(result);
+}).catch(err => console.log(err));
+
+
+module.exports = { sequelize }
