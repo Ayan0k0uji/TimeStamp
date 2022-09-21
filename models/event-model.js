@@ -1,3 +1,5 @@
+// модель мероприятия
+
 const { Model, Sequelize } = require("sequelize");
 const {sequelize} = require("../config/db");
 
@@ -40,7 +42,7 @@ Event.init({
     }
 }, {
     sequelize,
-    modelName: 'user'
+    modelName: 'event'
 });
 
 module.exports = {Event};
