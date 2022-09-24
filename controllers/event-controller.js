@@ -26,4 +26,17 @@ const createEvent = (req, res) => {
     );
 };
 
-module.exports = {createEvent};
+const getEvents = (req, res) => {
+    Event.findAll({raw: true}).then(function(events) {
+        const responseData = {
+            status: true,
+            data: events,
+        };
+        res.send(JSON.stringify(responseData, null, 2));
+    }
+    ).catch(function(err) {
+        res.send({status: false});
+    });
+}
+
+module.exports = {createEvent, getEvents};
