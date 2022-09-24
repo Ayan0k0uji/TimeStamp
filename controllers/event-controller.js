@@ -40,15 +40,15 @@ const getEvents = async (req, res) => {
 }
 
 const getEventByID = async (req, res) => {
-    try{
+    try {
         events = await Event.findByPk(req.params.id);
         const responseData = {
             status: Boolean(events),
             data: events,
         };
         res.send(JSON.stringify(responseData, null, 2));
-    } catch(err){
-        res.send({status: false})
+    } catch(err) {
+        res.send({status: false});
     }
 }
 
@@ -62,9 +62,36 @@ const deleteEventByID = async (req, res) => {
         
         console.log( result);
         res.send(JSON.stringify({status: Boolean(result)}, null, 2));
-    } catch (err) {
-        res.send({status: false})
+    } catch(err) {
+        res.send({status: false});
     }
 }
 
-module.exports = {createEvent, getEvents, getEventByID, deleteEventByID};
+const changeEventByID = async (req, res) => {
+    try {
+        events = await Event.findByPk(req.params.id);
+        if(events) {
+            await Event.update({
+                name: req.body.name,
+                date: req.body.date,
+                time: req.body.time,
+                venue: req.body.venue,
+                ageLimit: req.body.ageLimit,
+                availablePlaces: req.body.availablePlaces,
+                description: req.body.description,
+                price: req.body.price,
+                poster: req.body.poster
+            },
+            {
+                where: {id: req.params.id}
+            });
+            res.send({status: true});
+        } else {
+            res.send({status: false});
+        }
+    } catch(err) {
+        res.send({status: false});
+    }
+}
+
+module.exports = {createEvent, getEvents, getEventByID, deleteEventByID, changeEventByID};
