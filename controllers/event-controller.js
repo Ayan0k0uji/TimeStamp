@@ -5,7 +5,7 @@ const {v4: uuidv4} = require('uuid'); // функции из этого моду
 
 const createEvent = (req, res) => {
     const id = uuidv4();
-    Event.create({
+    const newUser = Event.create({
         id: id,
         name: req.body.name,
         date: req.body.date,
@@ -17,10 +17,13 @@ const createEvent = (req, res) => {
         price: req.body.price,
         poster: req.body.poster
     }).then(result => {
-        console.log(result);
-    }).catch(err => console.log(err));
-
-    res.send('User has been created successfully');
+        console.log(newUser);
+        res.send({status: true});
+    }).catch(err =>{ 
+            console.log(err);
+            res.send({status: false});
+        }
+    );
 };
 
 module.exports = {createEvent};
