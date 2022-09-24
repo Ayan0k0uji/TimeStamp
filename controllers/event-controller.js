@@ -26,17 +26,17 @@ const createEvent = (req, res) => {
     );
 };
 
-const getEvents = (req, res) => {
-    Event.findAll({raw: true}).then(function(events) {
+const getEvents = async (req, res) => {
+    try {
+        events = await Event.findAll({raw: true});
         const responseData = {
             status: true,
             data: events,
         };
         res.send(JSON.stringify(responseData, null, 2));
-    }
-    ).catch(function(err) {
+    } catch(err) {
         res.send({status: false});
-    });
+    }
 }
 
 module.exports = {createEvent, getEvents};
