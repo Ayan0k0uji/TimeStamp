@@ -52,4 +52,19 @@ const getEventByID = async (req, res) => {
     }
 }
 
-module.exports = {createEvent, getEvents, getEventByID};
+const deleteEventByID = async (req, res) => {
+    try {
+        const result = await Event.destroy({
+            where: {
+                id: req.params.id
+            }
+        });
+        
+        console.log( result);
+        res.send(JSON.stringify({status: Boolean(result)}, null, 2));
+    } catch (err) {
+        res.send({status: false})
+    }
+}
+
+module.exports = {createEvent, getEvents, getEventByID, deleteEventByID};
