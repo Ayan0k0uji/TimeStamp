@@ -28,7 +28,7 @@ const createEvent = (req, res) => {
 
 const getEvents = async (req, res) => {
     try {
-        events = await Event.findAll({raw: true});
+        events = await Event.findAll();
         const responseData = {
             status: true,
             data: events,
@@ -39,4 +39,17 @@ const getEvents = async (req, res) => {
     }
 }
 
-module.exports = {createEvent, getEvents};
+const getEventByID = async (req, res) => {
+    try{
+        events = await Event.findByPk(req.params.id);
+        const responseData = {
+            status: Boolean(events),
+            data: events,
+        };
+        res.send(JSON.stringify(responseData, null, 2));
+    } catch(err){
+        res.send({status: false})
+    }
+}
+
+module.exports = {createEvent, getEvents, getEventByID};
