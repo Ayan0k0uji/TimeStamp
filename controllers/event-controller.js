@@ -1,6 +1,7 @@
 // контроллер мероприятий
 
 const { Event } = require('../models/event-model');
+const { Op } = require("sequelize");
 const {v4: uuidv4} = require('uuid'); // функции из этого модуля создают айдишники
 
 const createEvent = (req, res) => {
@@ -94,4 +95,24 @@ const changeEventByID = async (req, res) => {
     }
 }
 
-module.exports = {createEvent, getEvents, getEventByID, deleteEventByID, changeEventByID};
+const searchEvents = async (req, res) => {
+    try {
+        const result = await Event.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${req.query.name}%`
+                }
+            }
+        });
+        const responseData = {
+            status: Boolean(result),
+            data: result,
+        };
+        res.send(JSON.stringify(responseData, null, 2)); 
+    } catch(err) {
+        console.log(err);
+        res.send({status: false});
+    }
+}
+
+module.exports = {createEvent, getEventByID, deleteEventByID, changeEventByID, searchEvents};

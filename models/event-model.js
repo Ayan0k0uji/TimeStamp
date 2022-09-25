@@ -1,7 +1,7 @@
 // модель мероприятия
 
-const { Model, Sequelize } = require("sequelize");
-const {sequelize} = require("../config/db");
+const { Model, Sequelize, Op } = require("sequelize");
+const { sequelize } = require("../config/db");
 
 class Event extends Model {}
 Event.init({
@@ -45,4 +45,5 @@ Event.init({
     modelName: 'event'
 });
 
-module.exports = {Event};
+
+module.exports = { Event };
