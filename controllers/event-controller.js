@@ -4,6 +4,7 @@ const { Event } = require('../models/event-model');
 const { Op } = require("sequelize");
 const {v4: uuidv4} = require('uuid'); // функции из этого модуля создают айдишники
 
+// создать мероприятие
 const createEvent = (req, res) => {
     const id = uuidv4();
     const newUser = Event.create({
@@ -11,6 +12,8 @@ const createEvent = (req, res) => {
         name: req.body.name,
         date: req.body.date,
         time: req.body.time,
+        country: req.body.country,
+        city: req.body.city,
         venue: req.body.venue,
         ageLimit: req.body.ageLimit,
         availablePlaces: req.body.availablePlaces,
@@ -19,14 +22,15 @@ const createEvent = (req, res) => {
         poster: req.body.poster
     }).then(result => {
         console.log(newUser);
-        res.send({status: true});
+        res.status(200).send({status: true});
     }).catch(err =>{ 
             console.log(err);
-            res.send({status: false});
+            res.status(500).send({status: false});
         }
     );
 };
 
+// получить все мероприятия из БД
 const getEvents = async (req, res) => {
     try {
         events = await Event.findAll();
@@ -34,12 +38,13 @@ const getEvents = async (req, res) => {
             status: true,
             data: events,
         };
-        res.send(JSON.stringify(responseData, null, 2));
+        res.status(200).send(JSON.stringify(responseData, null, 2));
     } catch(err) {
-        res.send({status: false});
+        res.status(500).send({status: false});
     }
 }
 
+// получить мероприятие по ID
 const getEventByID = async (req, res) => {
     try {
         events = await Event.findByPk(req.params.id);
@@ -47,12 +52,13 @@ const getEventByID = async (req, res) => {
             status: Boolean(events),
             data: events,
         };
-        res.send(JSON.stringify(responseData, null, 2));
+        res.status(200).send(JSON.stringify(responseData, null, 2));
     } catch(err) {
-        res.send({status: false});
+        res.status(500).send({status: false});
     }
 }
 
+// удалить выбранное по ID мероприятие
 const deleteEventByID = async (req, res) => {
     try {
         const result = await Event.destroy({
@@ -62,12 +68,13 @@ const deleteEventByID = async (req, res) => {
         });
         
         console.log( result);
-        res.send(JSON.stringify({status: Boolean(result)}, null, 2));
+        res.status(200).send(JSON.stringify({status: Boolean(result)}, null, 2));
     } catch(err) {
-        res.send({status: false});
+        res.status(500).send({status: false});
     }
 }
 
+// изменить выбранное по ID мероприятие
 const changeEventByID = async (req, res) => {
     try {
         events = await Event.findByPk(req.params.id);
@@ -76,6 +83,8 @@ const changeEventByID = async (req, res) => {
                 name: req.body.name,
                 date: req.body.date,
                 time: req.body.time,
+                country: req.body.country,
+                city: req.body.city,
                 venue: req.body.venue,
                 ageLimit: req.body.ageLimit,
                 availablePlaces: req.body.availablePlaces,
@@ -86,15 +95,16 @@ const changeEventByID = async (req, res) => {
             {
                 where: {id: req.params.id}
             });
-            res.send({status: true});
+            res.status(200).send({status: true});
         } else {
             res.send({status: false});
         }
     } catch(err) {
-        res.send({status: false});
+        res.status(500).send({status: false});
     }
 }
 
+// поиск мероприятий по параментрам req.query
 const searchEvents = async (req, res) => {
     try {
         const result = await Event.findAll({
@@ -108,10 +118,10 @@ const searchEvents = async (req, res) => {
             status: Boolean(result),
             data: result,
         };
-        res.send(JSON.stringify(responseData, null, 2)); 
+        res.status(200).send(JSON.stringify(responseData, null, 2)); 
     } catch(err) {
         console.log(err);
-        res.send({status: false});
+        res.status(500).send({status: false});
     }
 }
 

@@ -20,6 +20,13 @@ Event.init({
     },
     time: {
         type: Sequelize.DataTypes.DATE
+    },country: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false
+    },
+    city: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false
     },
     venue: {
         type: Sequelize.DataTypes.STRING,
