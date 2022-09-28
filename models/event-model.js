@@ -52,5 +52,20 @@ Event.init({
     modelName: 'event'
 });
 
+Event.searchAll = async function(query) {
+    const result = await this.findAll({
+        where: {
+            name: {
+                [Op.like]: `%${query.name}%`
+            }
+        }
+    });
+    const responseData = {
+        status: Boolean(result),
+        data: result,
+    };
+
+    return responseData;
+};
 
 module.exports = { Event };

@@ -107,22 +107,12 @@ const changeEventByID = async (req, res) => {
 // поиск мероприятий по параментрам req.query
 const searchEvents = async (req, res) => {
     try {
-        const result = await Event.findAll({
-            where: {
-                name: {
-                    [Op.like]: `%${req.query.name}%`
-                }
-            }
-        });
-        const responseData = {
-            status: Boolean(result),
-            data: result,
-        };
+        responseData = await Event.searchAll(req.query);
+        console.log(responseData);
         res.status(200).send(JSON.stringify(responseData, null, 2)); 
     } catch(err) {
         console.log(err);
         res.status(500).send({status: false});
     }
 }
-
 module.exports = {createEvent, getEventByID, deleteEventByID, changeEventByID, searchEvents};
