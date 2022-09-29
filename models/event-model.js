@@ -3,7 +3,7 @@
 const { Model, Sequelize, Op } = require("sequelize");
 const { sequelize } = require("../config/db");
 
-class Event extends Model {}
+class Event extends Model { }
 Event.init({
     id: {
         type: Sequelize.DataTypes.UUID,
@@ -20,7 +20,7 @@ Event.init({
     },
     time: {
         type: Sequelize.DataTypes.DATE
-    },country: {
+    }, country: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
@@ -52,13 +52,30 @@ Event.init({
     modelName: 'event'
 });
 
-Event.searchAll = async function(query) {
-    const result = await this.findAll({
-        where: {
+Event.searchAll = async function (query) {
+    whereStatement = {[Op.and]: []};
+    if (query.name) {
+        whereStatement[Op.and].push({
             name: {
                 [Op.like]: `%${query.name}%`
             }
-        }
+        });
+    }
+
+    if (query.date) {
+        whereStatement[Op.and].push({
+            date: query.date
+        });
+    }
+
+    if (query.city) {
+        whereStatement[Op.and].push({
+            city: query.city
+        });
+    }
+
+    const result = await this.findAll({
+        where: whereStatement
     });
     const responseData = {
         status: Boolean(result),
