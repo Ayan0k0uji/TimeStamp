@@ -68,6 +68,12 @@ Event.searchAll = async function (query) {
         });
     }
 
+    if (query.price_from && query.price_to) {
+        whereStatement[Op.and].push({
+            price: {[Op.between]: [query.price_from, query.price_to]}
+        });
+    }
+
     if (query.city) {
         whereStatement[Op.and].push({
             city: query.city
