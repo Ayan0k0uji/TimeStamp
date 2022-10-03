@@ -10,41 +10,42 @@ Event.init({
         primaryKey: true,
         allowNull: false
     },
-    name: {
+    name: { // Название
         type: Sequelize.STRING,
         allowNull: false
     },
-    date: {
+    date: { // Дата
         type: Sequelize.DataTypes.DATEONLY,
         allowNull: false
     },
-    time: {
+    time: { // Время
         type: Sequelize.DataTypes.DATE
-    }, country: {
+    }, 
+    country: { // Страна
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
-    city: {
+    city: { // Город
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
-    venue: {
+    venue: { // Место проведение
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
-    ageLimit: {
+    ageLimit: { //Возрастное ограничение
         type: Sequelize.DataTypes.INTEGER,
     },
-    availablePlaces: {
+    availablePlaces: { //Свободные места
         type: Sequelize.DataTypes.INTEGER
     },
-    description: {
+    description: { //
         type: Sequelize.DataTypes.STRING,
     },
-    price: {
+    price: { // Цена
         type: Sequelize.DataTypes.DOUBLE(2)
     },
-    poster: {
+    poster: { // Афиша
         type: Sequelize.DataTypes.STRING
     }
 }, {
@@ -52,8 +53,10 @@ Event.init({
     modelName: 'event'
 });
 
+//Метод поиска мероприятий по нескольким параметрам
 Event.searchAll = async function (query) {
     whereStatement = {[Op.and]: []};
+
     if (query.name) {
         whereStatement[Op.and].push({
             name: {
@@ -83,6 +86,7 @@ Event.searchAll = async function (query) {
     const result = await this.findAll({
         where: whereStatement
     });
+
     const responseData = {
         status: Boolean(result),
         data: result,

@@ -67,7 +67,7 @@ const deleteEventByID = async (req, res) => {
             }
         });
         
-        console.log( result);
+        console.log(result);
         res.status(200).send(JSON.stringify({status: Boolean(result)}, null, 2));
     } catch(err) {
         res.status(500).send({status: false});
