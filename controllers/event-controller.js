@@ -104,7 +104,7 @@ const changeEventByID = async (req, res) => {
     }
 }
 
-// поиск мероприятий по параментрам req.query
+// поиск мероприятий по параметрам req.query
 const searchEvents = async (req, res) => {
     try {
         responseData = await Event.searchAll(req.query);

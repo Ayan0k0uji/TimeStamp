@@ -62,9 +62,9 @@ Event.searchAll = async function (query) {
         });
     }
 
-    if (query.date) {
+    if (query.date_from && query.date_to) {
         whereStatement[Op.and].push({
-            date: query.date
+            date: {[Op.between]: [query.date_from, query.date_to]}
         });
     }
 
