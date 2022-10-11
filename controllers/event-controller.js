@@ -67,7 +67,7 @@ const deleteEventByID = async (req, res) => {
             }
         });
         
-        console.log( result);
+        console.log(result);
         res.status(200).send(JSON.stringify({status: Boolean(result)}, null, 2));
     } catch(err) {
         res.status(500).send({status: false});
@@ -104,7 +104,7 @@ const changeEventByID = async (req, res) => {
     }
 }
 
-// поиск мероприятий по параментрам req.query
+// поиск мероприятий по параметрам req.query
 const searchEvents = async (req, res) => {
     try {
         responseData = await Event.searchAll(req.query);
