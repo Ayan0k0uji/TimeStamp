@@ -1,11 +1,16 @@
 // модель участника мероприятий
 
-const { Model, Sequelize} = require("sequelize");
+const { Model, Sequelize } = require("sequelize");
 const { sequelize } = require("../config/db");
 const { Event } = require('../models/event-model');
 
 class Participant extends Model { }
 Participant.init({
+    Ticket_ID: { // ID билета
+        type: Sequelize.DataTypes.UUID,
+        allowNull: false,
+        primaryKey: true
+    },
     User_ID: { // ID пользователя
         type: Sequelize.DataTypes.UUID
     },
@@ -25,12 +30,11 @@ Participant.init({
     modelName: 'participant'
 });
 
-Participant.hasMany(Event, {    // Создание foreign key столбца для Event
+Event.hasMany(Participant, {    // Создание foreign key столбца для Event
     foreignKey: 'Event_ID',
     onDelete: 'CASCADE',
     allowNull: false,
     type: Sequelize.DataTypes.UUID
 });
-
 
 module.exports = { Participant };

@@ -1,7 +1,6 @@
 // контроллер мероприятий
 
 const { Event } = require('../models/event-model');
-const { Op } = require("sequelize");
 const {v4: uuidv4} = require('uuid'); // функции из этого модуля создают айдишники
 
 // создать мероприятие
