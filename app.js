@@ -2,6 +2,7 @@ const express = require('express');
 const sequelize = require('./config/db');
 const helloRoutes = require('./routes/hello-routes');
 const eventRoutes = require('./routes/event-routes');
+require('./models/participant-model');
 
 const app = express();
 const port = 3001;
