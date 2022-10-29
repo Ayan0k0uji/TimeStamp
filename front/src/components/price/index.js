@@ -13,7 +13,7 @@ export const Price = () => {
             <div className={s.price}>
 
                 <button className={s.priceButton} onClick={onClick}> 
-                    <div className = {s.textPrice}>Цена </div>
+                    <div className = {s.textPrice}>Ценаf </div>
                     <div className = {s.iconPrice}> {isActive ? <CaretUpOutlined /> : <CaretDownOutlined />}</div>
                 </button>
 
