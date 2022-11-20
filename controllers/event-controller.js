@@ -1,32 +1,32 @@
 // контроллер мероприятий
 
 const { Event } = require('../models/event-model');
+const { Event_id_for_category }  = require('../models/event_id-category-model');
 const {v4: uuidv4} = require('uuid'); // функции из этого модуля создают айдишники
 
 // создать мероприятие
-const createEvent = (req, res) => {
+const createEvent = async (req, res) => {
     const id = uuidv4();
-    const newUser = Event.create({
-        id: id,
-        name: req.body.name,
-        date: req.body.date,
-        time: req.body.time,
-        country: req.body.country,
-        city: req.body.city,
-        venue: req.body.venue,
-        ageLimit: req.body.ageLimit,
-        availablePlaces: req.body.availablePlaces,
-        description: req.body.description,
-        price: req.body.price,
-        poster: req.body.poster
-    }).then(result => {
-        console.log(newUser);
+    try {
+        await Event.create({
+            id: id,
+            name: req.body.name,
+            date: req.body.date,
+            time: req.body.time,
+            country: req.body.country,
+            city: req.body.city,
+            venue: req.body.venue,
+            ageLimit: req.body.ageLimit,
+            availablePlaces: req.body.availablePlaces,
+            description: req.body.description,
+            price: req.body.price,
+            poster: req.body.poster
+        });
+        await Event_id_for_category.createCategory(req.body, id);
         res.status(200).send({status: true});
-    }).catch(err =>{ 
-            console.log(err);
-            res.status(500).send({status: false});
-        }
-    );
+    } catch(err) { 
+        res.status(500).send({status: false});
+    }
 };
 
 // получить все мероприятия из БД
@@ -76,7 +76,7 @@ const deleteEventByID = async (req, res) => {
 // изменить выбранное по ID мероприятие
 const changeEventByID = async (req, res) => {
     try {
-        events = await Event.findByPk(req.params.id);
+        const events = await Event.findByPk(req.params.id);
         if(events) {
             await Event.update({
                 name: req.body.name,

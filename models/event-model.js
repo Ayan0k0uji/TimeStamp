@@ -3,7 +3,7 @@
 const { Model, Sequelize, Op } = require("sequelize");
 const { sequelize } = require("../config/db");
 
-class Event extends Model { }
+class Event extends Model {}
 Event.init({
     id: {
         type: Sequelize.DataTypes.UUID,
