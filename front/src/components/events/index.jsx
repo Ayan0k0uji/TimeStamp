@@ -3,24 +3,14 @@ import axios from 'axios';
 import EventCard from './event-card';
 import EventList from './event-list';
 
-function Events() {
-  const [events, setEvents] = useState([]);
-
-  const city = 'Samara';
-
-  useEffect(() => {
-    getEvents();
-  }, []);
-
-  async function getEvents() {
-    const response = await axios.get("http://localhost:3001/events/search?city=Samara");
-    console.log(response.data.data);  
-    setEvents(response.data.data);
-  }
+function Events(props) {
 
   return (
     <div className="Event">
-      <EventList events={events}/>
+      {props.events.length ?
+        <EventList events={props.events}/> :
+        <h1 className='d-flex justify-content-center'>Мероприятия не найдены</h1>
+      }
     </div>
   );
 }
