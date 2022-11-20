@@ -94,6 +94,8 @@ const changeEventByID = async (req, res) => {
             {
                 where: {id: req.params.id}
             });
+            Event_id_for_category.deleteEventCategory(req.params.id);
+            Event_id_for_category.createCategory(req.body, req.params.id);
             res.status(200).send({status: true});
         } else {
             res.send({status: false});
@@ -114,4 +116,5 @@ const searchEvents = async (req, res) => {
         res.status(500).send({status: false});
     }
 }
+
 module.exports = {createEvent, getEventByID, deleteEventByID, changeEventByID, searchEvents};

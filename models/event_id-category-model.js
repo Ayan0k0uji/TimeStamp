@@ -28,7 +28,6 @@ Category.hasMany(Event_id_for_category, {    // Создание foreign key с�
 });
 
 Event_id_for_category.createCategory = async (body, id) => {
-
     const names = await Category.findAll({
         raw: true,
         attributes: ['id_category'],
@@ -37,8 +36,17 @@ Event_id_for_category.createCategory = async (body, id) => {
         }
     });
     names.map(el => { el['id_event'] = id; return el; });
-    Event_id_for_category.bulkCreate(names);
-    
+    Event_id_for_category.bulkCreate(names);    
 }
+
+
+Event_id_for_category.deleteEventCategory = async(id) => {
+    await Event_id_for_category.destroy({
+        where: {
+            id_event: id
+        }
+    })
+}
+
 
 module.exports = { Event_id_for_category };

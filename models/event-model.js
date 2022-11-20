@@ -2,6 +2,9 @@
 
 const { Model, Sequelize, Op } = require("sequelize");
 const { sequelize } = require("../config/db");
+const { Category }  = require("../models/category-model");
+
+
 
 class Event extends Model {}
 Event.init({
@@ -71,9 +74,32 @@ Event.searchAll = async function (query) {
         });
     }
 
-    if (query.price_from && query.price_to) {
+    if (query.name_category) {
+
+        const names = await Category.findAll({
+            raw: true,
+            attributes: ['id_category'],
+            where: {
+                name_category: query.name_category
+            }
+        });
+        console.log(names);
+
+        const { Event_id_for_category }  = require("../models/event_id-category-model");
+
+        const arrayEvents = await Event_id_for_category.findAll({
+            raw: true,
+            attributes: ['id_event'],
+            where: {
+                //?
+                id_category: {[Op.in]: names.map(el => { return el['id_category']; })}
+            }
+        });
+
         whereStatement[Op.and].push({
-            price: {[Op.between]: [query.price_from, query.price_to]}
+            id: {
+                [Op.in]: arrayEvents.map(el => { return el['id_event']; })
+            }
         });
     }
 
