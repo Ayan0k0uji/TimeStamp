@@ -2,6 +2,7 @@ import { Header } from '../layout/header';
 import people from './people.png';
 import s from './s.module.scss'
 import Button from '../../components/button';
+import { useParams } from 'react-router-dom';
 
 const divStyle = {
   backgroundColor:'#ECDFFA',
@@ -9,6 +10,8 @@ const divStyle = {
 };
 
 const Event = () => {
+  const params = useParams();
+
   return (
     <div style={divStyle}>
     <Header />
@@ -29,6 +32,7 @@ const Event = () => {
         </div>
         <div> Описание:</div>
         <div className={s.description}>
+            айдишник = {params.id}
             Minecraft (от англ. mine — «шахта; добывать» + craft — «ремесло;
             создавать») — компьютерная инди-игра в жанре песочницы,
             созданная шведским программистом Маркусом Перссоном

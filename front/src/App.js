@@ -10,7 +10,7 @@ function App() {
       <Router>
          <Routes>
           <Route exact path="/" element={<Layout />}/>
-          <Route path="/event" element={<Event /> }/>
+          <Route exact path="/events/:id" element={<Event /> }/>
           <Route path="/eventReg" element={<EventReg /> }/>
          </Routes>
       </Router>
