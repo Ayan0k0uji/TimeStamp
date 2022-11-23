@@ -1,4 +1,5 @@
 import { React } from 'react';
+import { Link } from 'react-router-dom';
 import EventCard from '../event-card';
 import s from './event-list.module.scss';
 
@@ -10,7 +11,9 @@ function EventList(props) {
                 <div className={'row'}>
                     {props.events.map((event) =>
                         <div className='col-4'>
-                            <EventCard event={event} />
+                            <Link to={'/events/' + event.id}>
+                                <EventCard event={event} />
+                            </Link>
                         </div>
                     )}
                 </div>
