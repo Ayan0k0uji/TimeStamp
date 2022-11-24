@@ -43,7 +43,7 @@ Event.init({
         type: Sequelize.DataTypes.INTEGER
     },
     description: { //
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.DataTypes.STRING(2000),
     },
     price: { // Цена
         type: Sequelize.DataTypes.DOUBLE(2)
