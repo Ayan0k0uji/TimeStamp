@@ -31,7 +31,7 @@ const deleteCategory = async (req, res) => {
     }
 }
 
-const getAll = async (res) => {
+const getAll = async (req, res) => {
     try {
         categories = await Category.findAll();
         const responseData = {

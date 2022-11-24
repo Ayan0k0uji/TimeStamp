@@ -1,14 +1,14 @@
 const { Sequelize } = require('sequelize');
 
 const username = 'postgres';
-const password = 'admin';
+const password = '00023';
 const host = 'localhost';
 const port = '5432';
-const database = 'TimeStamp';
+const database = 'timestamp';
 
 const sequelize = new Sequelize(`postgres://${username}:${password}@${host}:${port}/${database}`);
 
-sequelize.sync().then(result => {
+sequelize.sync({force: true}).then(result => {
     console.log(result);
 }).catch(err => console.log(err));
 
