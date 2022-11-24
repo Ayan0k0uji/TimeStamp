@@ -2,12 +2,9 @@ const express = require('express');
 const sequelize = require('./config/db');
 const helloRoutes = require('./routes/hello-routes');
 const eventRoutes = require('./routes/event-routes');
-<<<<<<< HEAD
 const participantRoutes = require('./routes/participant-routes');
 const categoryRoutes = require('./routes/category-routes');
-=======
 const cors = require('cors');
->>>>>>> main
 require('./models/participant-model');
 require('./models/category-model');
 require('./models/event_id-category-model');
