@@ -11,6 +11,7 @@
     justify-content: space-between;
     padding-left: 10px;
     padding-right: 10px;
+    margin-bottom: 10px;
 }
 
 .searchBarBar input
@@ -57,4 +58,17 @@
 .searchBarBar svg:active
 {
     color: #0000007A;
+}
+
+.categoryList {
+    display: none;
+}
+
+.categoryListActive {
+    position: absolute;
+    left: 0;
+    width: 100%;
+
+    background-color: #ECDFFA;
+    z-index: 1;
 }
