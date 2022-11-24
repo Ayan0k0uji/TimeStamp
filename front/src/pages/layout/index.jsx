@@ -1,11 +1,12 @@
 import { Header } from './header';
 import { SearchBar } from '../../components/search';
-import { Price } from '../../components/price';
+import { Category } from '../../components/category';
 import { Date } from '../../components/date';
 import Events from '../../components/events';
 import {React, useEffect, useState} from 'react';
 import axios from 'axios';
 import { useMemo } from 'react';
+import s from './s.module.scss'
 
 const divStyle = {
   backgroundColor: '#ECDFFA',
@@ -33,12 +34,12 @@ const Layout = () => {
     <div style={divStyle}>
       <Header />
       <div className={"container"}>
-        <div className={' row'} style={{ marginTop: '30px' }}>
+        <div className={' row' } style={{ marginTop: '30px' }}>
           <div className={'col-2'}>
             <Date />
           </div>
           <div className={'col-2'}>
-            <Price />
+            <Category />
           </div>
           <div className={'col-6'}>
             <SearchBar
