@@ -31,4 +31,17 @@ const deleteCategory = async (req, res) => {
     }
 }
 
-module.exports = {createCategory, deleteCategory};
+const getAll = async (res) => {
+    try {
+        categories = await Category.findAll();
+        const responseData = {
+            status: true,
+            data: categories,
+        };
+        res.status(200).send(JSON.stringify(responseData, null, 2));
+    } catch(err) {
+        res.status(500).send({status: false});
+    }
+}
+
+module.exports = {createCategory, deleteCategory, getAll};
