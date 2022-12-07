@@ -3,6 +3,7 @@ import s from './s.module.scss';
 import avatar from './avatar.png';
 import React, { useRef } from "react";
 import useDetectOutsideClick from './useDetectOutsideClick'
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
     /* user dropdown */
@@ -62,7 +63,7 @@ export const Header = () => {
                                 <button onClick={handleClickUser}>Избранное</button>
                                 <button onClick={handleClickUser}>Выход</button>
                                 <button onClick={handleClickUser}>Настройки</button>
-                                <button onClick={handleClickUser} className={s.lastBt}>Стать организатором</button>
+                                <Link to={'/eventRegOrg'}><button className={s.lastBt}>Стать организатором</button></Link>
                             </div>
                         </div>
                     </div>

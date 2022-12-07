@@ -1,5 +1,5 @@
 import { Header } from '../layout/header';
-import EventEntryForm from '../../components/event-entry-form';
+import EventEntryForm from '../../components/eventUserForm/event-entry-form';
 
 const divStyle = {
   backgroundColor:'#ECDFFA',
