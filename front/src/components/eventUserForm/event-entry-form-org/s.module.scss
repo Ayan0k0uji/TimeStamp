@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
+
+.EventEntryForm {
+    position: relative;
+    width: 596px;
+    height: 1020px;
+
+    padding-top: 20px;
+    padding-left: 34px;
+    padding-right: 34px;
+    padding-bottom: 25px;
+
+    background: #FFFFFF;
+    mix-blend-mode: normal;
+    border-radius: 20px;
+
+    &__header {
+        margin-bottom: 37px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 36px;
+        line-height: 40px;
+        text-align: center;
+        font-feature-settings: 'liga' off;
+
+        color: rgba(0, 0, 0, 0.8);
+    }
+
+    &__input {
+        width: 100%;
+        padding-top: 19px;
+        padding-bottom: 18px;
+        padding-left: 16px;
+        background: #ECF1F7;
+        border-radius: 8px;
+        border-width: 0;
+
+        margin-bottom: 20px;
+    }
+
+    &__submitBox {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__checkBox {
+        width: 24px;
+        height: 24px;
+        margin-right: 7px;
+
+        background: #7635BD;
+        border-radius: 4px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__agreement {
+        display: flex;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 15px;
+        display: flex;
+        align-items: center;
+
+        color: rgba(0, 0, 0, 0.48);
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    &__cross {
+        position: absolute;
+        top: 33px;
+        right: 30px;
+
+        cursor: pointer;
+    }
+}
