@@ -8,6 +8,7 @@ const cors = require('cors');
 require('./models/participant-model');
 require('./models/category-model');
 require('./models/event_id-category-model');
+require('./models/city-model');
 
 const app = express();
 const port = 3001;
