@@ -11,5 +11,3 @@ const sequelize = new Sequelize(`postgres://${username}:${password}@${host}:${po
 sequelize.sync().then(result => {
     console.log(result);
 }).catch(err => console.log(err));
-
-module.exports = { sequelize }
