@@ -2,14 +2,17 @@ import s from './s.module.scss';
 //import './calendar.css';
 import './calendar.scss'
 import { CaretDownOutlined, CaretUpOutlined, ConsoleSqlOutlined } from '@ant-design/icons';
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { useState } from "react";
 import { useDetectOutsideClick } from "./useDetectOutsideClick";
 import Calendar from 'react-calendar';
+import { EventsSearchContext } from '../../context/context';
 
 
 
 export const Date = () => {
+    const {setSearchDate} = useContext(EventsSearchContext);
+
     const dropdownRef = useRef(null);
     const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
     const onClick = () => setIsActive(!isActive);
@@ -19,6 +22,11 @@ export const Date = () => {
 
     const prnt = () => {
         console.log(date);
+    }
+
+    const setSearchedDate = (value) => {
+        setDate(value);
+        setSearchDate(value);
     }
 
     return (
@@ -31,7 +39,7 @@ export const Date = () => {
 
             <div className={isActive ? s.calendarActive : s.calendar}>
                 <Calendar 
-                    onChange={setDate}
+                    onChange={(value, event) => setSearchedDate(value)}
                     value={date}
                     selectRange={true}  />
             </div>

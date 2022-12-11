@@ -6,7 +6,9 @@ import Events from '../../components/events';
 import {React, useEffect, useState} from 'react';
 import axios from 'axios';
 import { useMemo } from 'react';
-import s from './s.module.scss'
+import s from './s.module.scss';
+import { EventsSearchContext } from '../../context/context';
+import e from 'cors';
 
 const divStyle = {
   backgroundColor: '#ECDFFA',
@@ -16,21 +18,46 @@ const divStyle = {
 const Layout = () => {
   const [events, setEvents] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchDate, setSearchDate] = useState('');
 
   const searchedEvents = useMemo(() => {
     return events.filter(event => event.name.toLowerCase().includes(searchQuery.toLowerCase()));
   }, [searchQuery, events])
 
+  const fetchedEvents = useMemo(() => {
+    let fetchQuery = "http://localhost:3001/events/search";
+    let dateParameters = null;
+
+    if(searchDate[0] && searchDate[1]) {
+      dateParameters = `date_from=" + ${searchDate[0]} + "&date_to=" + ${searchDate[1]}`;
+    }
+
+    if(dateParameters) {
+      fetchQuery += '?' + dateParameters;
+    }
+
+    getEvents(fetchQuery);
+  },[searchDate]); 
+
   useEffect(() => {
     getEvents();
   }, []);
 
-  async function getEvents() {
-    const response = await axios.get("http://localhost:3001/events/search?city=Samara");
+  async function getEvents(query = null) {
+    let response = null;
+    if(!query) {
+      response = await axios.get("http://localhost:3001/events/search");
+    } else {
+      response = await axios.get(query);
+    }
     setEvents(response.data.data);
   }
 
   return (
+    <EventsSearchContext.Provider value={{
+      searchDate,
+      setSearchDate
+    }}>
     <div style={divStyle}>
       <Header />
       <div className={"container"}>
@@ -54,6 +81,7 @@ const Layout = () => {
         />
       </div>
     </div>
+    </EventsSearchContext.Provider>
   );
 };
 
