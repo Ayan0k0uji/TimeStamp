@@ -20,7 +20,7 @@ Event.hasMany(Event_id_for_category, {    // Создание foreign key сто
     type: Sequelize.DataTypes.UUID
 });
 
-Category.hasMany(Event_id_for_category, {    // Создание foreign key столбца для Event
+Category.hasMany(Event_id_for_category, {    // Создание foreign key столбца для Category
     foreignKey: 'id_category',
     onDelete: 'CASCADE',
     allowNull: false,

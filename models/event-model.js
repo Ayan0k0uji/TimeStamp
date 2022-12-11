@@ -32,18 +32,18 @@ Event.init({
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
-    venue: { // Место проведение
+    venue: { // Место проведения
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
-    ageLimit: { //Возрастное ограничение
-        type: Sequelize.DataTypes.INTEGER,
-    },
-    availablePlaces: { //Свободные места
+    ageLimit: { // Возрастное ограничение
         type: Sequelize.DataTypes.INTEGER
     },
-    description: { //
-        type: Sequelize.DataTypes.STRING,
+    availablePlaces: { // Свободные места
+        type: Sequelize.DataTypes.INTEGER
+    },
+    description: { // Описание
+        type: Sequelize.DataTypes.TEXT
     },
     price: { // Цена
         type: Sequelize.DataTypes.DOUBLE(2)
@@ -55,6 +55,8 @@ Event.init({
     sequelize,
     modelName: 'event'
 });
+
+const { Event_id_for_category }  = require("../models/event_id-category-model");
 
 //Метод поиска мероприятий по нескольким параметрам
 Event.searchAll = async function (query) {
@@ -83,15 +85,11 @@ Event.searchAll = async function (query) {
                 name_category: query.name_category
             }
         });
-        console.log(names);
-
-        const { Event_id_for_category }  = require("../models/event_id-category-model");
 
         const arrayEvents = await Event_id_for_category.findAll({
             raw: true,
             attributes: ['id_event'],
             where: {
-                //?
                 id_category: {[Op.in]: names.map(el => { return el['id_category']; })}
             }
         });
