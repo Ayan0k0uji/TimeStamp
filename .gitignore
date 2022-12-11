@@ -1,6 +1,2 @@
-# чтобы gitignore игнорил нужно удалить из отслеживания файлы в git для этого в папке TimeStamp (папка с скрытым файлом .git):
-# git rm config/db.js --cached
-# git rm -r front/node_modules --cached
-
 /front/node_modules
 /config/db.js
