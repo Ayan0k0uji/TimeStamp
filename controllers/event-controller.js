@@ -19,6 +19,7 @@ const createEvent = async (req, res) => {
             ageLimit: req.body.ageLimit,
             availablePlaces: req.body.availablePlaces,
             description: req.body.description,
+            shortDescription: req.body.shortDescription,
             price: req.body.price,
             poster: req.body.poster
         });
@@ -88,6 +89,7 @@ const changeEventByID = async (req, res) => {
                 ageLimit: req.body.ageLimit,
                 availablePlaces: req.body.availablePlaces,
                 description: req.body.description,
+                shortDescription: req.body.shortDescription,
                 price: req.body.price,
                 poster: req.body.poster
             },

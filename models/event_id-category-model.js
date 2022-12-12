@@ -2,7 +2,6 @@
 
 const { Model, Sequelize, Op } = require("sequelize");
 const { sequelize } = require("../config/db");
-const { Event } = require('./event-model');
 const { Category } = require('./category-model');
 
 class Event_id_for_category extends Model {}
@@ -13,14 +12,7 @@ Event_id_for_category.init(
     modelName: 'event_id_for_category'
 });
 
-Event.hasMany(Event_id_for_category, {    // Создание foreign key столбца для Event
-    foreignKey: 'id_event',
-    onDelete: 'CASCADE',
-    allowNull: false,
-    type: Sequelize.DataTypes.UUID
-});
-
-Category.hasMany(Event_id_for_category, {    // Создание foreign key столбца для Event
+Category.hasMany(Event_id_for_category, {    // Создание foreign key столбца для Category
     foreignKey: 'id_category',
     onDelete: 'CASCADE',
     allowNull: false,
