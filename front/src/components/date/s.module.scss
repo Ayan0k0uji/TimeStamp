@@ -23,15 +23,24 @@
     {
         padding-left: 28%;
     }
-
     
-    .iconDate span
-    {
+}
+
+.iconDateActive {
+    transform: rotate(180deg);
+    & span {
+        padding-right: 5%;
+        padding-bottom: 60%;
+        align-items: center;
+    }
+}
+
+.iconDateInactive {
+    & span {
         padding-right: 5%;
         padding-bottom: 16%;
         align-items: center;
     }
-    
 }
 
 
@@ -53,10 +62,24 @@
     //width: 165px;
     opacity: 0;
     visibility: hidden;
+    position: absolute;
+
+    width: 0px;
+    height: 0px;
 }
 
 .calendarActive
 {
+    z-index: 10;
     opacity: 1;
     visibility: visible;
+    position: absolute;
+    //width: 273px;
+    //height: 0px;
+    background-color: #F5F5F5;
+    padding: 5px 10px 5px 10px;
+    border-radius: 4px;
+    filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.25));
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: translateY(+4px);
 }

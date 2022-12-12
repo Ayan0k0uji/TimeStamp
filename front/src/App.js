@@ -4,6 +4,7 @@ import EventPage from './pages/event';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import EventReg from './pages/eventReg';
 import EventRegOrg from './pages/eventRegOrg';
+import './index.scss';
 
 
 function App() {
