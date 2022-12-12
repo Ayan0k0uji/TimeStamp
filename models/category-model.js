@@ -16,7 +16,7 @@ Category.init({
         allowNull: false
     }
 }, {
-    sequelize,
+    sequelize: sequelize,
     modelName: 'category'
 });
 

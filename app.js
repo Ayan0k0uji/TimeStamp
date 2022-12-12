@@ -4,7 +4,10 @@ const helloRoutes = require('./routes/hello-routes');
 const eventRoutes = require('./routes/event-routes');
 const participantRoutes = require('./routes/participant-routes');
 const categoryRoutes = require('./routes/category-routes');
+const cityRoutes = require('./routes/city-router');
+
 const cors = require('cors');
+
 require('./models/participant-model');
 require('./models/category-model');
 require('./models/event_id-category-model');
@@ -34,6 +37,7 @@ app.use(helloRoutes);
 app.use(eventRoutes);
 app.use(participantRoutes);
 app.use(categoryRoutes);
+app.use(cityRoutes);
 
 app.listen(port, () => {
     console.log(`TimeStamp app listening on port ${port}`);

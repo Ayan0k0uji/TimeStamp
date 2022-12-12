@@ -1,12 +1,12 @@
 // модель города
 
-const { Model, Sequelize, Op } = require("sequelize");
+const { Model, Sequelize } = require("sequelize");
 const { sequelize } = require("../config/db");
 
 class City extends Model {}
 City.init({
     id_city: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: Sequelize.DataTypes.UUID,
         primaryKey: true,
         allowNull: false
     },
