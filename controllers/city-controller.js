@@ -1,7 +1,9 @@
 // контроллер  городов
 
 const { City } = require('../models/city-model');
-//const {v4: uuidv4} = require('uuid'); // функции из этого модуля создают айдишники
+const {v4: uuidv4} = require('uuid'); // функции из этого модуля создают айдишники
+const fs = require('fs');
+
 
 const getAll = async (res) => {
     try {
