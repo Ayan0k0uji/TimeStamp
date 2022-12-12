@@ -5,18 +5,25 @@ import favoriteIconImg from './favorite-icon.svg';
 import {formatDate} from '../../../helpers/date';
 
 export const EventCard = (props) => {
+    let eventName;
+
+    if(props.event.name !== undefined) {
+        eventName = String(props.event.name);
+        eventName = eventName.length > 32 ? eventName.substring(0, 32) + "..." : eventName ;
+    }
+
     return (
         <div className={s.eventCard}>
             <div className={s.imgBox}>
                 <img src={people} alt="" />
                 <img src={favoriteIconImg} className={s.favoriteIcon} ></img>
             </div>
-            <h6 className={s.eventCardHeader}>{props.event.name}</h6>
+            <h6 className={s.eventCardHeader}>{eventName}</h6>
             <span className={s.eventCardLocation}>Online</span>
             <span className={s.eventCardDate}>{formatDate(props.event.date)}</span>
-            <div className={s.eventCardButton}>
+            {/* <div className={s.eventCardButton}>
                 <span className={s.eventCardPrice}>{props.event.price}</span>
-            </div>
+            </div> */}
         </div>
     );
 };

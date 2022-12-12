@@ -58,13 +58,11 @@ const Layout = () => {
       <Header />
       <div className={"container"}>
         <div className={' row' } style={{ marginTop: '30px' }}>
+          
           <div className={'col-2'}>
-            <Date />
+          <Date />
           </div>
-          <div className={'col-2'}>
-            <Category />
-          </div>
-          <div className={'col-6'}>
+          <div className={'col-8'}>
             <SearchBar
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)

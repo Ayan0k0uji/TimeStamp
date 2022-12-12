@@ -1,5 +1,5 @@
 import s from './s.module.scss';
-import Button from '../../button';
+import Button from '../button';
 import checkIcon from './check.svg';
 import cross from "./cross.svg"; 
 
@@ -17,10 +17,9 @@ const EventEntryForm = () => {
 
             <div className={s.EventEntryForm__submitBox}>
                 <div className={s.EventEntryForm__agreement}>
-                <div className={s.EventEntryForm__checkBox}>
-                    <img src={checkIcon} alt="" />
-                </div>
-                <span>Я согласен с <a href='#!'>условиями передачи информации</a></span>
+                  <input type="checkbox" className={s.EventEntryForm__checkBox} id="agree" />
+                  <label for="agree">
+                  <span>Я согласен с <a href='#!'>условиями передачи информации</a></span></label>
                 </div>
                 <Button>Отправить</Button>
             </div>
