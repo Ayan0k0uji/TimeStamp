@@ -2,6 +2,7 @@
 
 const { Model, Sequelize } = require("sequelize");
 const { sequelize } = require("../config/db");
+const {initCity} = require("../controllers/city-controller");
 
 class City extends Model {}
 City.init({
@@ -13,7 +14,8 @@ City.init({
 
     name_city: {
         type: Sequelize.DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     }
 }, {
     sequelize,
