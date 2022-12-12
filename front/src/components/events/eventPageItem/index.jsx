@@ -1,14 +1,29 @@
 import people from './people.png';
 import s from './s.module.scss'
 import Button from '../../button';
+import {formatDate, formatTime} from '../../../helpers/date';
+import { Link } from 'react-router-dom';
 
 
 const divStyle = {
   backgroundColor:'#ECDFFA',
-  height: '1024px',
 };
 
 const EventPageItem = (props) => {
+  let date;
+  if(props.event.date != undefined) {
+    date = formatDate(props.event.date);
+  } else {
+    date = null;
+  }
+
+  let time;
+  if(props.event.time != undefined) {
+    time = formatTime(props.event.time);
+  } else {
+    time = null;
+  }
+
   return (
     <div className={"container"}>
         <div className={' row'} style= {{marginTop:'10px'}}>
@@ -22,7 +37,7 @@ const EventPageItem = (props) => {
                   {props.event.name}
               </div>
               <div className={s.data}>
-                {props.event.date}
+                {date + ", " + time}
               </div>
           </div>
           <div> Описание:</div>
@@ -30,7 +45,9 @@ const EventPageItem = (props) => {
               {props.event.description}
           </div>
           <div className={s.button}>
-          <   Button>Подать заявку</Button>
+            <Link to='/eventReg' style={{"text-decoration": 'none'}}>
+              <Button>Подать заявку</Button>
+            </Link>
           </div>
           </div>
           </div>

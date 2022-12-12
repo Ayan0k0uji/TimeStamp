@@ -1,1 +1,3 @@
-const serverHost = '95.163.236.252:3001';
+const serverHost = 'localhost:3001';
+
+export default serverHost;

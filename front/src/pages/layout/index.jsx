@@ -11,7 +11,6 @@ import serverHost from '../../variables';
 
 const divStyle = {
   backgroundColor: '#ECDFFA',
-  height: '1024px',
 };
 
 const Layout = () => {

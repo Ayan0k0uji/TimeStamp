@@ -47,6 +47,7 @@
 }
 
 .cityListActive {
+  z-index: 10000;
   position: absolute;
   width: 195px;
 
@@ -125,6 +126,7 @@
 }
 
 .userListActive {
+  z-index: 10000;
   position: absolute;
   width: 260px;
   padding: 0;
