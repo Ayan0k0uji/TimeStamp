@@ -13,3 +13,5 @@ sequelize.sync().then(result => {
 }).catch(err => console.log(err));
 
 module.exports = { sequelize }
+
+// \copy cities from 'C:\\Users\\delov\\Desktop\\city.csv' DELIMITER ',' CSV ENCODING 'UTF8';

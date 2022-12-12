@@ -3,7 +3,7 @@
 const { Model, Sequelize, Op } = require("sequelize");
 const { sequelize } = require("../config/db");
 const { Category }  = require("../models/category-model");
-
+const { Event_id_for_category } = require("../models/event_id-category-model");
 
 
 class Event extends Model {}
@@ -61,7 +61,12 @@ Event.init({
     modelName: 'event'
 });
 
-const { Event_id_for_category }  = require("../models/event_id-category-model");
+Event.hasMany(Event_id_for_category, {    // Создание foreign key столбца для Event
+    foreignKey: 'id_event',
+    onDelete: 'CASCADE',
+    allowNull: false,
+    type: Sequelize.DataTypes.UUID
+});
 
 //Метод поиска мероприятий по нескольким параметрам
 Event.searchAll = async function (query) {
