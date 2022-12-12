@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 const username = 'postgres';
-const password = '00023';
+const password = 'k316409562';
 const host = 'localhost';
 const port = '5432';
 const database = 'timestamp';
@@ -12,4 +12,6 @@ sequelize.sync().then(result => {
     console.log(result);
 }).catch(err => console.log(err));
 
-module.exports = {sequelize};
+module.exports = { sequelize }
+
+// \copy cities from 'C:\\Users\\delov\\Desktop\\city.csv' DELIMITER ',' CSV ENCODING 'UTF8';

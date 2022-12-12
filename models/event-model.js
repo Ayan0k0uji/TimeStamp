@@ -3,7 +3,7 @@
 const { Model, Sequelize, Op } = require("sequelize");
 const { sequelize } = require("../config/db");
 const { Category }  = require("../models/category-model");
-
+const { Event_id_for_category } = require("../models/event_id-category-model");
 
 
 class Event extends Model {}
@@ -32,18 +32,23 @@ Event.init({
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
-    venue: { // Место проведение
+    venue: { // Место проведения
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
-    ageLimit: { //Возрастное ограничение
-        type: Sequelize.DataTypes.INTEGER,
-    },
-    availablePlaces: { //Свободные места
+    ageLimit: { // Возрастное ограничение
         type: Sequelize.DataTypes.INTEGER
     },
-    description: { //
-        type: Sequelize.DataTypes.STRING,
+    availablePlaces: { // Свободные места
+        type: Sequelize.DataTypes.INTEGER
+    },
+    description: { // Описание
+        type: Sequelize.DataTypes.TEXT,
+        allowNull: false
+    },
+    shortDescription: {
+        type: Sequelize.DataTypes.STRING(90),
+        allowNull: false
     },
     price: { // Цена
         type: Sequelize.DataTypes.DOUBLE(2)
@@ -54,6 +59,13 @@ Event.init({
 }, {
     sequelize,
     modelName: 'event'
+});
+
+Event.hasMany(Event_id_for_category, {    // Создание foreign key столбца для Event
+    foreignKey: 'id_event',
+    onDelete: 'CASCADE',
+    allowNull: false,
+    type: Sequelize.DataTypes.UUID
 });
 
 //Метод поиска мероприятий по нескольким параметрам
@@ -83,15 +95,11 @@ Event.searchAll = async function (query) {
                 name_category: query.name_category
             }
         });
-        console.log(names);
-
-        const { Event_id_for_category }  = require("../models/event_id-category-model");
 
         const arrayEvents = await Event_id_for_category.findAll({
             raw: true,
             attributes: ['id_event'],
             where: {
-                //?
                 id_category: {[Op.in]: names.map(el => { return el['id_category']; })}
             }
         });
