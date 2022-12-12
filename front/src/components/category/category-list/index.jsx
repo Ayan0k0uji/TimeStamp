@@ -2,6 +2,7 @@ import s from './s.module.scss';
 import React, { useRef } from "react";
 import {useEffect, useState } from 'react';
 import axios from 'axios';
+import serverHost from '../../../variables';
 
 
 export const CategoryList = () => {
@@ -12,7 +13,7 @@ export const CategoryList = () => {
     }, []);
 
     async function getCategories() {
-        const response = await axios.get("http://localhost:3001/categories");
+        const response = await axios.get(`http://${serverHost}/categories`);
         console.log(response.data.data);
         setCategories(response.data.data);
     }

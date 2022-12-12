@@ -4,6 +4,7 @@ import avatar from './avatar.png';
 import React, { useRef } from "react";
 import useDetectOutsideClick from './useDetectOutsideClick'
 import { Link } from 'react-router-dom';
+import PlacesDropdown from '../../../components/placesDropdown';
 
 export const Header = () => {
     /* user dropdown */
@@ -40,7 +41,7 @@ export const Header = () => {
                                 <EnvironmentOutlined />
                                 <u>Самара</u>
                             </div>
-                            <div className={isActiveCity ? s.cityListActive : s.cityList}>
+                            {/* <div className={isActiveCity ? s.cityListActive : s.cityList}>
                                 <input type="text" placeholder="Введите место" className={s.firtsEl} />
                                 <button onClick={handleClickCity} type="button" className={s.onlEl}>Online</button>
                                 <button onClick={handleClickCity} type="button">Самара</button>
@@ -49,7 +50,11 @@ export const Header = () => {
                                 <button onClick={handleClickCity} type="button">Сызрань</button>
                                 <button onClick={handleClickCity} type="button">Ульяновск</button>
                                 <button onClick={handleClickCity} type="button" className={s.lastEl}>Тольятти</button>
-                            </div>
+                            </div> */}
+                            <PlacesDropdown
+                                isActiveCity={isActiveCity}
+                                handleClickCity={handleClickCity}
+                            />
                         </div>
                         <div className ={"col-7"}></div>
                         <div className ={"col"} ref={dropdownRefUser}>

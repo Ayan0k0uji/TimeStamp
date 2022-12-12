@@ -6,7 +6,8 @@ import Events from '../../components/events';
 import {React, useEffect, useState} from 'react';
 import axios from 'axios';
 import { useMemo } from 'react';
-import s from './s.module.scss'
+import s from './s.module.scss';
+import serverHost from '../../variables';
 
 const divStyle = {
   backgroundColor: '#ECDFFA',
@@ -26,7 +27,7 @@ const Layout = () => {
   }, []);
 
   async function getEvents() {
-    const response = await axios.get("http://localhost:3001/events/search?city=Samara");
+    const response = await axios.get(`http://${serverHost}/events/search`);
     setEvents(response.data.data);
   }
 

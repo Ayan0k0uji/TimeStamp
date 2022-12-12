@@ -16,17 +16,21 @@ require('./models/city-model');
 const app = express();
 const port = 3001;
 
+const host = 'http://localhost:' + port;
+
 // ставим корс на приложуху
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: host,
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200
 }
+
+
 app.use(cors(corsOptions));
 app.use(function (req, res, next) {
-    res.setHeader('Allow-Origin', 'http://localhost:3000');
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Allow-Origin', host);
+    res.setHeader('Access-Control-Allow-Origin', host);
+    res.setHeader('Access-Control-Allow-Origin', host);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import EventPageItem from '../../components/events/eventPageItem/';
+import serverHost from '../../variables';
 
 const divStyle = {
   backgroundColor:'#ECDFFA',
@@ -16,7 +17,7 @@ const EventPage = () => {
   const params = useParams();
 
   const getEventById = async (id) => {
-    const response =  await axios.get('http://localhost:3001/events/' + id);
+    const response =  await axios.get(`http://${serverHost}/events/` + id);
     return response;
   }
 
