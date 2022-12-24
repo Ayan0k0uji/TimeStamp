@@ -1,6 +1,7 @@
 const { City } = require('./models/city-model');
 const { v4: uuidv4 } = require('uuid'); // функции из этого модуля создают айдишники
 const fs = require('fs');
+const sequelize = require('./config/db');
 
 
 const initCity = async () => {
