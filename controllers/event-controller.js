@@ -8,7 +8,7 @@ const { v4: uuidv4 } = require('uuid'); // функции из этого мод
 const createEvent = async (req, res) => {
     const id = uuidv4();
     try {
-        if (req.body.name_category) {
+        if (req.body.name_category.length) {
             await Event.create({
                 id: id,
                 name: req.body.name,
@@ -27,8 +27,7 @@ const createEvent = async (req, res) => {
             await Event_id_for_category.createCategory(req.body, id);
             res.status(200).send({ status: true });
         }
-        //?
-        else res.status(403).send({ status: false });
+        else res.status(400).send({ status: false });
     } catch (err) {
         res.status(500).send({ status: false });
     }

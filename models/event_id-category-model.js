@@ -27,8 +27,7 @@ Event_id_for_category.createCategory = async (body, id) => {
             name_category: body.name_category
         }
     });
-    if (names === {}) names.map(el => { el['id_event'] = id; return el; });
-    else throw new SyntaxError("Category must be NOT NULL");
+    names.map(el => { el['id_event'] = id; return el; });
     Event_id_for_category.bulkCreate(names);    
 }
 
