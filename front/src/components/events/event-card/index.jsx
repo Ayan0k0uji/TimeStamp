@@ -6,10 +6,16 @@ import {formatDate} from '../../../helpers/date';
 
 export const EventCard = (props) => {
     let eventName;
+    let shortDescription;
 
     if(props.event.name !== undefined) {
         eventName = String(props.event.name);
-        eventName = eventName.length > 32 ? eventName.substring(0, 32) + "..." : eventName ;
+        eventName = eventName.length > 24 ? eventName.substring(0, 24) + "..." : eventName ;
+    }
+
+    if(props.event.shortDescription !== undefined) {
+        shortDescription = String(props.event.shortDescription);
+        shortDescription = shortDescription.length > 42 ? shortDescription.substring(0, 42) + "..." : shortDescription ;
     }
 
     return (
@@ -19,8 +25,12 @@ export const EventCard = (props) => {
                 <img src={favoriteIconImg} className={s.favoriteIcon} ></img>
             </div>
             <h6 className={s.eventCardHeader}>{eventName}</h6>
+            <span className={s.eventShortDescription}>{shortDescription}</span>
             <span className={s.eventCardLocation}>Online</span>
-            <span className={s.eventCardDate}>{formatDate(props.event.date)}</span>
+            <div className={s.row}>
+                <span className={s.eventCardDate}>{formatDate(props.event.date)}</span>
+                <span className={s.eventCategory}>{props.event.category}</span>
+            </div>
             {/* <div className={s.eventCardButton}>
                 <span className={s.eventCardPrice}>{props.event.price}</span>
             </div> */}
