@@ -18,7 +18,9 @@ export const Header = () => {
     /* city dropdown */
     const dropdownRefCity = useRef(null);
     const [isActiveCity, setIsActiveCity] = useDetectOutsideClick(dropdownRefCity, false);
-    const onClickCity = () => setIsActiveCity(!isActiveCity);
+    const onClickCity = () => {
+        setIsActiveCity(!isActiveCity);
+    };
 
     function handleClickCity(e) 
     {

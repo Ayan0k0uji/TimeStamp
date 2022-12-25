@@ -3,7 +3,7 @@ import { SearchBar } from '../../components/search';
 import { Category } from '../../components/category';
 import { Date } from '../../components/date';
 import Events from '../../components/events';
-import {React, useEffect, useState} from 'react';
+import {React, useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import { useMemo } from 'react';
 import s from './s.module.scss';
@@ -19,8 +19,13 @@ const divStyle = {
 const Layout = () => {
   const [events, setEvents] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchDate, setSearchDate] = useState('');
-  const [searchPlace, setSearchPlace] = useState('');
+
+  const {
+    searchDate,
+    setSearchDate,
+    searchPlace,
+    setSearchPlace,
+  } = useContext((EventsSearchContext));
 
   const searchedEvents = useMemo(() => {
     return events.filter(event => event.name.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -52,6 +57,7 @@ const Layout = () => {
 
   useEffect(() => {
     getEvents();
+    setSearchPlace('');
   }, []);
 
   async function getEvents(query) {
@@ -60,11 +66,6 @@ const Layout = () => {
   }
 
   return (
-    <EventsSearchContext.Provider value={{
-      searchDate,
-      setSearchDate,
-      setSearchPlace
-    }}>
     <div style={divStyle}>
       <Header />
       <div className={"container"}>
@@ -86,7 +87,6 @@ const Layout = () => {
         />
       </div>
     </div>
-    </EventsSearchContext.Provider>
   );
 };
 
