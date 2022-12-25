@@ -45,8 +45,64 @@ const Layout = () => {
   }, []);
 
   async function getEvents(query) {
-    const response = await axios.get(query);
-    setEvents(response.data.data);
+    //const response = await axios.get(query);
+    const response = {
+      "status": true,
+      "data": [
+        {
+          "id": "78b6d9e7-c782-47d9-9686-45dbbd086a57",
+          "name": "Python",
+          "date": "2022-12-11",
+          "time": "1970-01-01T03:25:45.654Z",
+          "country": "Russia",
+          "city": "Samara",
+          "venue": "some place",
+          "ageLimit": 18,
+          "availablePlaces": 1000,
+          "description": "aaaa",
+          "shortDescription": "dcfvghbjnkml",
+          "price": 200,
+          "poster": "poster-url",
+          "createdAt": "2022-12-12T17:29:11.495Z",
+          "updatedAt": "2022-12-12T17:29:11.495Z"
+        },
+        {
+          "id": "61fa00db-2177-4b9c-8a3d-8445d2f7ff9a",
+          "name": "Pythondtfagkhlgknfjbdhvghfsdfasgdhfjgkhkjhk,mlsfgdfsagdhfjghj ",
+          "date": "2022-12-11",
+          "time": "1970-01-01T03:25:45.654Z",
+          "country": "Russia",
+          "city": "Samara",
+          "venue": "some place",
+          "ageLimit": 18,
+          "availablePlaces": 1000,
+          "description": "aaaa",
+          "shortDescription": "dcfvghbjnkml",
+          "price": 200,
+          "poster": "poster-url",
+          "createdAt": "2022-12-12T18:24:28.985Z",
+          "updatedAt": "2022-12-12T18:24:28.985Z"
+        },
+        {
+          "id": "1d73ff38-0dbd-4a12-9f83-4de347e633fa",
+          "name": "Pythondtfagkhlgk nfjbdhvghfsdfasgdh fjgkhkjhk,ml sfgdfsagdhfjghj ",
+          "date": "2022-12-11",
+          "time": "1970-01-01T03:25:45.654Z",
+          "country": "Russia",
+          "city": "Samara",
+          "venue": "some place",
+          "ageLimit": 18,
+          "availablePlaces": 1000,
+          "description": "aaaa",
+          "shortDescription": "dcfvghbjnkml",
+          "price": 200,
+          "poster": "poster-url",
+          "createdAt": "2022-12-12T18:25:00.708Z",
+          "updatedAt": "2022-12-12T18:25:00.708Z"
+        }
+      ]
+    }
+    setEvents(response.data); // при реальной работе заменить на response.data.data
   }
 
   return (
