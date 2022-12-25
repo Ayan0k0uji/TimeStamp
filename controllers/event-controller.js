@@ -1,32 +1,36 @@
 // контроллер мероприятий
 
 const { Event } = require('../models/event-model');
-const { Event_id_for_category }  = require('../models/event_id-category-model');
-const {v4: uuidv4} = require('uuid'); // функции из этого модуля создают айдишники
+const { Event_id_for_category } = require('../models/event_id-category-model');
+const { v4: uuidv4 } = require('uuid'); // функции из этого модуля создают айдишники
 
 // создать мероприятие
 const createEvent = async (req, res) => {
     const id = uuidv4();
     try {
-        await Event.create({
-            id: id,
-            name: req.body.name,
-            date: req.body.date,
-            time: req.body.time,
-            country: req.body.country,
-            city: req.body.city,
-            venue: req.body.venue,
-            ageLimit: req.body.ageLimit,
-            availablePlaces: req.body.availablePlaces,
-            description: req.body.description,
-            shortDescription: req.body.shortDescription,
-            price: req.body.price,
-            poster: req.body.poster
-        });
-        await Event_id_for_category.createCategory(req.body, id);
-        res.status(200).send({status: true});
-    } catch(err) { 
-        res.status(500).send({status: false});
+        if (req.body.name_category) {
+            await Event.create({
+                id: id,
+                name: req.body.name,
+                date: req.body.date,
+                time: req.body.time,
+                country: req.body.country,
+                city: req.body.city,
+                venue: req.body.venue,
+                ageLimit: req.body.ageLimit,
+                availablePlaces: req.body.availablePlaces,
+                description: req.body.description,
+                shortDescription: req.body.shortDescription,
+                price: req.body.price,
+                poster: req.body.poster
+            });
+            await Event_id_for_category.createCategory(req.body, id);
+            res.status(200).send({ status: true });
+        }
+        //?
+        else res.status(403).send({ status: false });
+    } catch (err) {
+        res.status(500).send({ status: false });
     }
 };
 
@@ -39,8 +43,8 @@ const getEvents = async (req, res) => {
             data: events,
         };
         res.status(200).send(JSON.stringify(responseData, null, 2));
-    } catch(err) {
-        res.status(500).send({status: false});
+    } catch (err) {
+        res.status(500).send({ status: false });
     }
 }
 
@@ -53,8 +57,8 @@ const getEventByID = async (req, res) => {
             data: events,
         };
         res.status(200).send(JSON.stringify(responseData, null, 2));
-    } catch(err) {
-        res.status(500).send({status: false});
+    } catch (err) {
+        res.status(500).send({ status: false });
     }
 }
 
@@ -66,11 +70,11 @@ const deleteEventByID = async (req, res) => {
                 id: req.params.id
             }
         });
-        
+
         console.log(result);
-        res.status(200).send(JSON.stringify({status: Boolean(result)}, null, 2));
-    } catch(err) {
-        res.status(500).send({status: false});
+        res.status(200).send(JSON.stringify({ status: Boolean(result) }, null, 2));
+    } catch (err) {
+        res.status(500).send({ status: false });
     }
 }
 
@@ -78,7 +82,7 @@ const deleteEventByID = async (req, res) => {
 const changeEventByID = async (req, res) => {
     try {
         const events = await Event.findByPk(req.params.id);
-        if(events) {
+        if (events) {
             await Event.update({
                 name: req.body.name,
                 date: req.body.date,
@@ -93,17 +97,17 @@ const changeEventByID = async (req, res) => {
                 price: req.body.price,
                 poster: req.body.poster
             },
-            {
-                where: {id: req.params.id}
-            });
+                {
+                    where: { id: req.params.id }
+                });
             Event_id_for_category.deleteEventCategory(req.params.id);
             Event_id_for_category.createCategory(req.body, req.params.id);
-            res.status(200).send({status: true});
+            res.status(200).send({ status: true });
         } else {
-            res.send({status: false});
+            res.send({ status: false });
         }
-    } catch(err) {
-        res.status(500).send({status: false});
+    } catch (err) {
+        res.status(500).send({ status: false });
     }
 }
 
@@ -112,11 +116,11 @@ const searchEvents = async (req, res) => {
     try {
         responseData = await Event.searchAll(req.query);
         console.log(responseData);
-        res.status(200).send(JSON.stringify(responseData, null, 2)); 
-    } catch(err) {
+        res.status(200).send(JSON.stringify(responseData, null, 2));
+    } catch (err) {
         console.log(err);
-        res.status(500).send({status: false});
+        res.status(500).send({ status: false });
     }
 }
 
-module.exports = {createEvent, getEventByID, deleteEventByID, changeEventByID, searchEvents};
+module.exports = { createEvent, getEventByID, deleteEventByID, changeEventByID, searchEvents };
