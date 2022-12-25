@@ -20,6 +20,7 @@ const Layout = () => {
   const [events, setEvents] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchDate, setSearchDate] = useState('');
+  const [searchPlace, setSearchPlace] = useState('');
 
   const searchedEvents = useMemo(() => {
     return events.filter(event => event.name.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -28,17 +29,26 @@ const Layout = () => {
   const fetchedEvents = useMemo(() => {
     let fetchQuery = `http://${serverHost}/events/search`;
     let dateParameters = null;
+    let placeParameter = null;
 
     if(searchDate[0] && searchDate[1]) {
       dateParameters = `date_from=" + ${searchDate[0]} + "&date_to=" + ${searchDate[1]}`;
     }
 
-    if(dateParameters) {
+    if(searchPlace) {
+      placeParameter = `city=${searchPlace}`;
+    }
+
+    if(dateParameters && placeParameter) {
+      fetchQuery += '?' + dateParameters + "&" + placeParameter;
+    } else if(dateParameters){
       fetchQuery += '?' + dateParameters;
+    } else if(placeParameter) {
+      fetchQuery += '?' + placeParameter;
     }
 
     getEvents(fetchQuery);
-  },[searchDate]); 
+  },[searchDate, searchPlace]);
 
   useEffect(() => {
     getEvents();
@@ -52,7 +62,8 @@ const Layout = () => {
   return (
     <EventsSearchContext.Provider value={{
       searchDate,
-      setSearchDate
+      setSearchDate,
+      setSearchPlace
     }}>
     <div style={divStyle}>
       <Header />

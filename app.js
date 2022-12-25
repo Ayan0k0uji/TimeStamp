@@ -16,7 +16,7 @@ require('./models/city-model');
 const app = express();
 const port = 3001;
 
-const host = 'http://localhost:' + port;
+const host = 'http://localhost:3000';
 
 // ставим корс на приложуху
 const corsOptions = {

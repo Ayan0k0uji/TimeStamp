@@ -1,12 +1,15 @@
 import { EnvironmentOutlined } from '@ant-design/icons';
 import s from './s.module.scss';
 import avatar from './avatar.png';
-import React, { useRef } from "react";
+import React, {useContext, useRef, useState} from "react";
 import useDetectOutsideClick from './useDetectOutsideClick'
 import { Link } from 'react-router-dom';
 import PlacesDropdown from '../../../components/placesDropdown';
+import {EventsSearchContext} from "../../../context/context";
 
 export const Header = () => {
+    const {setSearchPlace} = useContext(EventsSearchContext);
+
     /* user dropdown */
     const dropdownRefUser = useRef(null);
     const [isActiveUser, setIsActiveUser] = useDetectOutsideClick(dropdownRefUser, false);
@@ -20,8 +23,9 @@ export const Header = () => {
     function handleClickCity(e) 
     {
         e.preventDefault();
-        console.log('click11'); //action
         onClickCity(); //to close on click
+        //console.log(e.target.value);
+        setSearchPlace(e.target.value);
     }
 
     function handleClickUser(e) 
