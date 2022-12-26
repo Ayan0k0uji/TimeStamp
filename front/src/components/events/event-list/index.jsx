@@ -10,7 +10,7 @@ function EventList(props) {
             <div className={s.eventList}>
                 <div className={'row'}>
                     {props.events.map((event) =>
-                        <div className='col-4'>
+                        <div className='col-3'>
                             <Link to={'/events/' + event.id}>
                                 <EventCard event={event} />
                             </Link>

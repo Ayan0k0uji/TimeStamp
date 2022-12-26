@@ -3,8 +3,8 @@
 .eventCard {
     display: inline-block;
 
-    width: 360px;
-    height: 313px;
+    width: 272px;
+    height: 264px;
 
     margin-right: 30px;
     margin-bottom: 30px;
@@ -16,7 +16,7 @@
     position: relative;
 
     .imgBox {
-        height: 66%;
+        height: 60%;
         position: relative;
 
         img {
@@ -29,8 +29,8 @@
             height: 24px;
             width: 24px;
             position: absolute;
-            right: 10px;
-            bottom: 10px;
+            right: 6px;
+            bottom: 6px;
         }
     }
 
@@ -40,11 +40,22 @@
         font-weight: 400;
         font-size: 20px;
         line-height: 24px;
-
+        margin:0;
         color: #000000;
 
-        margin-top: 8px;
-        margin-bottom: 9px;
+        margin-top: 4px;
+        margin-left: 3px;
+        margin-bottom: 2px;
+    }
+
+    .eventShortDescription{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        color: #000000;
+        
         margin-left: 3px;
     }
 
@@ -59,46 +70,40 @@
 
         color: rgba(0, 0, 0, 0.48);
 
-        margin-top: 13px;
+        margin-top: 6px;
         margin-left: 3px;
+        margin-bottom: 3px;
     }
 
-    .eventCardDate {
-        display: block;
+    .row{
+        display: flex;
+        justify-content:space-between;
+        .eventCardDate {
+            display: block;
+    
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+            margin-left: 3px;
+    
+            color: #000000;
+        }
+        .eventCategory{
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+    
+            color: rgba(0, 0, 0, 0.48);
 
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 17px;
-        /* identical to box height */
+            margin-right: 4px;
+        }
 
-
-        color: #000000;
     }
 
-    .eventCardPrice {
-        position: absolute;
-        right: 3px;
-        bottom: 23px;
-
-        display: inline;
-
-        background: #FFFFFF;
-        border: 1px solid #D9D9D9;
-        border-radius: 5px;
-
-        text-decoration: none;
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 17px;
-
-        padding: 0 10px;
-
-        color: #7635BD;
-    }
 }
 
 .eventCard:hover {

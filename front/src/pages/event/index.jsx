@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import EventPageItem from '../../components/events/eventPageItem/';
 import serverHost from '../../variables';
+import EventCard from '../../components/events/event-card';
 
 const divStyle = {
   backgroundColor:'#ECDFFA',
