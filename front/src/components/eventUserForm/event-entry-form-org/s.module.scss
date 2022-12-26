@@ -4,6 +4,46 @@
     color:#7635BD;
 }
 
+.errorTxtCB {
+    &__true {
+        position: absolute;
+        height: 20px;
+
+        bottom: 20px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+
+        color: #E31C1C;
+    }
+
+    &__false {
+        position: absolute;
+        visibility: none;
+        opacity: 0;
+    }
+}
+
+.errorTxt {
+    &__true {
+        height: 20px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+
+        color: #E31C1C;
+    }
+
+    &__false {
+        position: absolute;
+        visibility: none;
+        opacity: 0;
+    }
+}
+
 .EventEntryForm {
     position: relative;
     width: 596px;
@@ -74,6 +114,18 @@
         border-width: 0;
 
         margin-bottom: 20px;
+        
+        &__error {
+            width: 100%;
+            padding-top: 19px;
+            padding-bottom: 18px;
+            padding-left: 16px;
+            background: rgba(224, 31, 25, 0.12);;
+            border-radius: 8px;
+            border-width: 0;
+
+            //margin-bottom: 20px;
+        }
     }
 
     &__submitBox {
@@ -139,5 +191,31 @@
         right: 30px;
 
         cursor: pointer;
+    }
+}
+
+.Button {
+    padding: 22px 28px;
+
+    background: rgba(118, 53, 189, 0.8);
+    border-radius: 8px;
+    border: 0;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+    cursor: pointer;
+
+    &:hover {
+        background: rgba(118, 53, 189, 0.9);
     }
 }
