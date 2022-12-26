@@ -81,6 +81,9 @@ Event.searchAll = async function (query) {
     }
 
     if (query.date_from && query.date_to) {
+        curDate = new Date();
+        date_from = new Date(query.date_from);
+        if (date_from < curDate) query.date_from = curDate;
         whereStatement[Op.and].push({
             date: {[Op.between]: [query.date_from, query.date_to]}
         });
@@ -128,5 +131,6 @@ Event.searchAll = async function (query) {
 
     return responseData;
 };
+
 
 module.exports = { Event };
